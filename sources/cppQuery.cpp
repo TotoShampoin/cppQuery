@@ -3,7 +3,6 @@
 #include <emscripten.h>
 #include <emscripten/bind.h>
 #include <format>
-#include <iostream>
 #include <stdexcept>
 #include <string>
 
