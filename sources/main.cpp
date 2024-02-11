@@ -7,7 +7,10 @@ int main(int argc, const char* argv[]) {
     
     $("#element")
         .html("<p>:)</p>")
-        .addClass("blue");
+        .addClass("blue")
+        .removeClass("red")
+        .prepend("<h1>hewo</h1>")
+        .attr("contenteditable", "true");
 
     return 0;
 }
