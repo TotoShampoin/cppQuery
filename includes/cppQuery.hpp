@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <emscripten/bind.h>
 
 class $ {
 public:
@@ -23,5 +24,5 @@ public:
     $& append(const std::string& htmlContent);
     $& prepend(const std::string& htmlContent);
 private:
-    std::string _id;
+    emscripten::val $element;
 };
