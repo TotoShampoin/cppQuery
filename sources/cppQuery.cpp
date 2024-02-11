@@ -19,6 +19,10 @@ $::$(const std::string& query_selector) {
 $::~$() {
 }
 
+emscripten::val& $::get() {
+    return $element;
+}
+
 std::string $::html() {
     return $element["innerHTML"].as<std::string>();
 }

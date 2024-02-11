@@ -8,6 +8,8 @@ public:
     $(const std::string& query_selector);
     ~$();
 
+    emscripten::val& get();
+
     std::string html();
     $& html(const std::string&);
 
