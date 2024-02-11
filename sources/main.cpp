@@ -1,5 +1,4 @@
 #include "cppQuery.hpp"
-#include <emscripten/emscripten.h>
 #include <iostream>
 
 
