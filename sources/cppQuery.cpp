@@ -2,7 +2,7 @@
 
 #include <emscripten.h>
 #include <emscripten/em_asm.h>
-#include <functional>
+#include <vector>
 #include <sstream>
 #include <string>
 
