@@ -16,15 +16,15 @@ public:
     std::string text();
     $& text(const std::string&);
 
-    std::string attr(const std::string& attribute);
-    $& attr(const std::string& attribute, const std::string& value);
+    std::string attr(const std::string&);
+    $& attr(const std::string&, const std::string&);
 
-    $& addClass(const std::string& className);
-    $& removeClass(const std::string& className);
-    bool hasClass(const std::string& className);
+    $& addClass(const std::string&);
+    $& removeClass(const std::string&);
+    bool hasClass(const std::string&);
 
-    $& append(const std::string& htmlContent);
-    $& prepend(const std::string& htmlContent);
+    $& append(const std::string&);
+    $& prepend(const std::string&);
 private:
     emscripten::val $element;
 };
