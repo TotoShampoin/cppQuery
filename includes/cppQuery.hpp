@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <string>
 #include <emscripten/bind.h>
 
@@ -25,6 +26,8 @@ public:
 
     $& append(const std::string&);
     $& prepend(const std::string&);
+
+    $& on(const std::string&, const std::function<void(emscripten::val)>&);
 private:
     emscripten::val $element;
 };

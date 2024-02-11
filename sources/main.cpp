@@ -2,6 +2,8 @@
 #include <iostream>
 
 
+EMSCRIPTEN_BINDINGS(events) {};
+
 int main(int argc, const char* argv[]) {
     auto $element = $("#element");
     std::cout << $element.html() << "\n";
@@ -11,7 +13,10 @@ int main(int argc, const char* argv[]) {
         .addClass("blue")
         .removeClass("red")
         .prepend("<h1>hewo</h1>")
-        .attr("contenteditable", "true");
+        .attr("contenteditable", "true")
+        .on("click", [](emscripten::val e) {
+            std::cout << "clicked\n";
+        });
 
     return 0;
 }
