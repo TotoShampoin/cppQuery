@@ -3,9 +3,10 @@
 
 
 int main(int argc, const char* argv[]) {
-    std::cout << $("#element").html() << "\n";
+    auto $element = $("#element");
+    std::cout << $element.html() << "\n";
     
-    $("#element")
+    $element
         .html("<p>:)</p>")
         .addClass("blue")
         .removeClass("red")
