@@ -25,6 +25,10 @@ int main(int argc, const char* argv[]) {
         });
 
     $img.hide();
+    
+    for(auto& $el : $element.children()) {
+        std::cout << $el.html() << "\n";
+    }
 
     return 0;
 }
