@@ -17,20 +17,37 @@ public:
     std::string text() const;
     $& text(const std::string&);
 
+    std::string val() const;
+    $& val(const std::string&);
+
     std::string attr(const std::string&) const;
     $& attr(const std::string&, const std::string&);
+    $& removeAttr(const std::string&);
 
     $& addClass(const std::string&);
     $& removeClass(const std::string&);
     bool hasClass(const std::string&) const;
 
+    $& css(const std::string&, const std::string&);
+    std::string css(const std::string&) const;
+
+    $& hide();
+    $& show();
+    $& toggle();
+
     $& append(const std::string&);
     $& prepend(const std::string&);
-
     $& append(const $&);
     $& prepend(const $&);
 
     $& on(const std::string&, const std::function<void(emscripten::val)>&);
+    $& off(const std::string&);
+    $& trigger(const std::string&);
+
+    // $ clone() const;
+    // std::vector<$> children() const;
+    // $ parent() const;
+
 private:
     emscripten::val $element;
 

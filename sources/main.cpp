@@ -16,12 +16,15 @@ int main(int argc, const char* argv[]) {
         .html("<p>:)</p>")
         .addClass("blue")
         .removeClass("red")
+        .css("font-family", "sans-serif")
         .prepend("<h1>hewo</h1>")
         .append($img)
         .attr("contenteditable", "true")
         .on("click", [](emscripten::val e) {
             std::cout << "clicked\n";
         });
+
+    $img.hide();
 
     return 0;
 }
