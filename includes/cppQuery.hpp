@@ -27,6 +27,9 @@ public:
     $& append(const std::string&);
     $& prepend(const std::string&);
 
+    $& append(const $&);
+    $& prepend(const $&);
+
     $& on(const std::string&, const std::function<void(emscripten::val)>&);
 private:
     emscripten::val $element;

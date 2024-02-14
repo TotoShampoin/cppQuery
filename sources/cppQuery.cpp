@@ -16,7 +16,7 @@ EMSCRIPTEN_BINDINGS( EventBinding ) {
 
 
 void $::_createElement(const std::string& html_string) {
-    $element = val::global("document").call<val>("createElement", std::string("template"));
+    $element = val::global("document").call<val>("createElement", std::string("div"));
     $element.set("innerHTML", html_string);
     $element = $element["firstElementChild"];
 }
@@ -89,6 +89,16 @@ $& $::append(const std::string& html_content) {
 
 $& $::prepend(const std::string& html_content) {
     $element.set("innerHTML", html_content + $element["innerHTML"].as<std::string>());
+    return *this;
+}
+
+$& $::append(const $& other) {
+    $element.call<void>("append", other.$element);
+    return *this;
+}
+
+$& $::prepend(const $& other) {
+    $element.call<void>("prepend", other.$element);
     return *this;
 }
 
