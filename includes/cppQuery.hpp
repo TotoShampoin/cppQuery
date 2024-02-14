@@ -11,6 +11,7 @@ public:
     ~$();
 
     emscripten::val& get();
+    const emscripten::val& get() const;
 
     std::string html() const;
     $& html(const std::string&);

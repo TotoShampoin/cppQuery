@@ -46,6 +46,9 @@ $::~$() {}
 JSObj& $::get() {
     return $element;
 }
+const JSObj& $::get() const {
+    return $element;
+}
 
 std::string $::html() const {
     return $element["innerHTML"].as<std::string>();
