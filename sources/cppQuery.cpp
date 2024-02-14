@@ -6,22 +6,22 @@
 #include <stdexcept>
 #include <string>
 
-using namespace emscripten;
+using JSObj = emscripten::val;
 
 EMSCRIPTEN_BINDINGS( EventBinding ) {
-	emscripten::class_<std::function<void(emscripten::val e)> >( "ListenerCallback" )
+	emscripten::class_<std::function<void(JSObj e)> >( "ListenerCallback" )
 	    .constructor<>()
-	    .function("onload", &std::function<void(emscripten::val e)>::operator() );
+	    .function("onload", &std::function<void(JSObj e)>::operator() );
 };
 
 
 void $::_createElement(const std::string& html_string) {
-    $element = val::global("document").call<val>("createElement", std::string("div"));
+    $element = JSObj::global("document").call<JSObj>("createElement", std::string("div"));
     $element.set("innerHTML", html_string);
     $element = $element["firstElementChild"];
 }
 void $::_queryElement(const std::string& query_selector) {
-    $element = val::global("document").call<val>("querySelector", query_selector);
+    $element = JSObj::global("document").call<JSObj>("querySelector", query_selector);
     if($element.isUndefined()) {
         throw std::runtime_error(std::format("\"{}\" does not exist", query_selector));
     }
@@ -38,7 +38,7 @@ $::$(const std::string& query_selector) {
 $::~$() {
 }
 
-emscripten::val& $::get() {
+JSObj& $::get() {
     return $element;
 }
 
@@ -102,8 +102,8 @@ $& $::prepend(const $& other) {
     return *this;
 }
 
-$& $::on(const std::string& event_name, const std::function<void(emscripten::val)>& callback_cpp) {
-    auto callback_js = emscripten::val(callback_cpp)["onload"].call<emscripten::val>("bind", callback_cpp);
+$& $::on(const std::string& event_name, const std::function<void(JSObj)>& callback_cpp) {
+    auto callback_js = JSObj(callback_cpp)["onload"].call<JSObj>("bind", callback_cpp);
     $element.call<void>("addEventListener", event_name, callback_js);
     return *this;
 }
