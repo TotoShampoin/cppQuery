@@ -7,6 +7,7 @@
 class $ {
 public:
     $(const std::string&);
+    $(const emscripten::val&);
     ~$();
 
     emscripten::val& get();
@@ -44,9 +45,9 @@ public:
     $& off(const std::string&);
     $& trigger(const std::string&);
 
-    // $ clone() const;
-    // std::vector<$> children() const;
-    // $ parent() const;
+    $ clone() const;
+    std::vector<$> children() const;
+    $ parent() const;
 
 private:
     emscripten::val $element;

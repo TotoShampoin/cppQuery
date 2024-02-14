@@ -34,7 +34,15 @@ $::$(const std::string& query_selector) {
         _queryElement(query_selector);
     }
 }
+$::$(const JSObj& object) {
+    // if object is not an HTML element, throw an error
+    if(!object.instanceof(JSObj::global("HTMLElement"))) {
+        throw std::runtime_error("Not an HTML element");
+    }
+    $element = object;
+}
 $::~$() {}
+
 JSObj& $::get() {
     return $element;
 }
@@ -138,18 +146,18 @@ $& $::trigger(const std::string& event_name) {
     return *this;
 }
 
-// $ $::clone() const {
-//     return $($element.call<JSObj>("cloneNode", true));
-// }
-// std::vector<$> $::children() const {
-//     std::vector<$> children;
-//     auto children_js = $element["children"];
-//     for(int i = 0; i < children_js["length"].as<int>(); i++) {
-//         children.push_back($(children_js[i]));
-//     }
-//     return children;
-// }
+$ $::clone() const {
+    return $($element.call<JSObj>("cloneNode", true));
+}
+std::vector<$> $::children() const {
+    std::vector<$> children;
+    auto children_js = $element["children"];
+    for(int i = 0; i < children_js["length"].as<int>(); i++) {
+        children.push_back($(children_js[i]));
+    }
+    return children;
+}
 
-// $ $::parent() const {
-//     return $($element["parentNode"]);
-// }
+$ $::parent() const {
+    return $($element["parentNode"]);
+}
