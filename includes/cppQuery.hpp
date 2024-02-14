@@ -11,18 +11,18 @@ public:
 
     emscripten::val& get();
 
-    std::string html();
+    std::string html() const;
     $& html(const std::string&);
 
-    std::string text();
+    std::string text() const;
     $& text(const std::string&);
 
-    std::string attr(const std::string&);
+    std::string attr(const std::string&) const;
     $& attr(const std::string&, const std::string&);
 
     $& addClass(const std::string&);
     $& removeClass(const std::string&);
-    bool hasClass(const std::string&);
+    bool hasClass(const std::string&) const;
 
     $& append(const std::string&);
     $& prepend(const std::string&);

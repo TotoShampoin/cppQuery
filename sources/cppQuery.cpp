@@ -42,7 +42,7 @@ emscripten::val& $::get() {
     return $element;
 }
 
-std::string $::html() {
+std::string $::html() const {
     return $element["innerHTML"].as<std::string>();
 }
 
@@ -50,7 +50,7 @@ $& $::html(const std::string& html_content) {
     $element.set("innerHTML", html_content);
     return *this;
 }
-std::string $::text() {
+std::string $::text() const {
     return $element["textContent"].as<std::string>();
 }
 
@@ -59,7 +59,7 @@ $& $::text(const std::string& text_content) {
     return *this;
 }
 
-std::string $::attr(const std::string& attribute) {
+std::string $::attr(const std::string& attribute) const {
     return $element.call<std::string>("getAttribute", attribute);
 }
 
@@ -78,7 +78,7 @@ $& $::removeClass(const std::string& class_name) {
     return *this;
 }
 
-bool $::hasClass(const std::string& class_name) {
+bool $::hasClass(const std::string& class_name) const {
     return $element["classList"].call<bool>("contains", class_name);
 }
 
