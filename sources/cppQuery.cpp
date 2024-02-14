@@ -6,7 +6,6 @@
 #include <stdexcept>
 #include <string>
 
-constexpr const char* ID_NAME = "wasm-id";
 using namespace emscripten;
 
 EMSCRIPTEN_BINDINGS( EventBinding ) {
@@ -15,10 +14,24 @@ EMSCRIPTEN_BINDINGS( EventBinding ) {
 	    .function("onload", &std::function<void(emscripten::val e)>::operator() );
 };
 
-$::$(const std::string& query_selector) {
+
+void $::_createElement(const std::string& html_string) {
+    $element = val::global("document").call<val>("createElement", std::string("template"));
+    $element.set("innerHTML", html_string);
+    $element = $element["firstElementChild"];
+}
+void $::_queryElement(const std::string& query_selector) {
     $element = val::global("document").call<val>("querySelector", query_selector);
     if($element.isUndefined()) {
         throw std::runtime_error(std::format("\"{}\" does not exist", query_selector));
+    }
+}
+
+$::$(const std::string& query_selector) {
+    if(query_selector.find('<') != std::string::npos) {
+        _createElement(query_selector);
+    } else {
+        _queryElement(query_selector);
     }
 }
 

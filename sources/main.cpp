@@ -7,6 +7,8 @@ EMSCRIPTEN_BINDINGS(events) {};
 int main(int argc, const char* argv[]) {
     auto $element = $("#element");
     std::cout << $element.html() << "\n";
+
+    auto $img = $("<img>");
     
     $element
         .html("<p>:)</p>")

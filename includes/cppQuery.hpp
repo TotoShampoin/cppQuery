@@ -6,7 +6,7 @@
 
 class $ {
 public:
-    $(const std::string& query_selector);
+    $(const std::string&);
     ~$();
 
     emscripten::val& get();
@@ -30,4 +30,7 @@ public:
     $& on(const std::string&, const std::function<void(emscripten::val)>&);
 private:
     emscripten::val $element;
+
+    void _createElement(const std::string&);
+    void _queryElement(const std::string&);
 };
